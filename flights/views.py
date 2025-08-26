@@ -1,9 +1,7 @@
 from django.shortcuts import render, redirect
 from django import forms
 from .models import Flight
-from django.http import HttpResponseRedirect
-from django.urls import reverse
-from django.db import models
+from django.db.models import Avg
 
 # Create your views here.
 
@@ -33,9 +31,13 @@ def FlightsListView(request):
     return render(request, 'flightsList.html', {'flights': flights})
 
 def FlightsStatsView(request):
-    total_flights = Flight.objects.count()
-    avg_price = Flight.objects.all().aggregate(models.Avg('price'))['price__avg'] or 0
-    return render(request, 'flightsStats.html', {
-        'total_flights': total_flights,
-        'avg_price': avg_price
-    })
+    national_flights_count = Flight.objects.filter(flight_type='Nacional').count()
+    international_flights_count = Flight.objects.filter(flight_type='Internacional').count()
+    national_avg_price = Flight.objects.filter(flight_type='Nacional').aggregate(Avg('price'))['price__avg'] or 0
+    context = {
+        'national_flights_count': national_flights_count,
+        'international_flights_count': international_flights_count,
+        'national_flights_avg_price': national_avg_price,
+    }
+
+    return render(request, 'flightsStats.html', context)
