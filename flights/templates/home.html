@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Vuelos - Rionegro</title>
+</head>
+<body>
+    <h1>Bienvenido al Sistema de Gestión de Vuelos</h1>
+    <nav>
+        <ul>
+            <li><a href="{% url 'registerFlight' %}">Registrar Vuelos</a></li>
+            <li><a href="{% url 'flightsList' %}">Listar Vuelos</a></li>
+            <li><a href="{% url 'flightsStats' %}">Estadísticas de Vuelos</a></li>
+        </ul>
+    </nav>
+</body>
+</html>

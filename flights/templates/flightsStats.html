@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Estadísticas de Vuelos</title>
+</head>
+<body>
+    <h1>Estadísticas de Vuelos</h1>
+    
+    <h2>Total de Vuelos por Tipo</h2>
+    <p>
+        <strong>Nacionales:</strong> {{ national_flights_count }}
+    </p>
+    <p>
+        <strong>Internacionales:</strong> {{ international_flights_count }}
+    </p>
+
+    <hr>
+
+    <h2>Precio Promedio</h2>
+    <p>
+        <strong>Promedio de vuelos Nacionales:</strong> ${{ national_flights_avg_price|floatformat:2 }}
+    </p>
+
+    <br>
+    <a href="{% url 'home' %}">Volver al inicio</a>
+</body>
+</html>
